@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumePRO</title>
+
+    <link rel="icon" href="RESUME PRO.png" type="icon type">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="container" id="cv-form">
+        <h1>BUILD YOUR RESUME!</h1>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3>PERSONAL INFORMATION</h3>
+                <div class="form-group">
+                    <label for="nameField">Your Name</label>
+                    <input type="text" id="nameField" placeholder="Enter here" class="form-control" />
+                </div>
+                <div class="form-group mt-2">
+                    <label for="contactField">Your Phone Number</label>
+                    <input type="text" id="contactField" placeholder="Enter here" class="form-control" />
+                </div>
+                <div class="form-group mt-2">
+                    <label for="emailField"> Email Address</label>
+                    <input type="text" id="emailField" placeholder="Enter here" class="form-control" />
+                </div>
+                <div class="form-group mt-2">
+                    <label for="addressField">Your Address</label>
+                    <textarea name="text" id="addressField" placeholder="Enter here" class="form-control" cols="30"
+                        rows="3"></textarea>
+                </div>
+                <p class="text-secondary mt-3">Important Links</p>
+                <div class="form-group mt-2">
+                    <label for="fbField"> facebook </label>
+                    <input type="text" id="fbField" placeholder="Enter here" class="form-control" />
+                </div>
+                <div class="form-group mt-2">
+                    <label for="instaField"> instagram </label>
+                    <input type="text" id="instaField" placeholder="Enter here" class="form-control" />
+                </div>
+                <div class="form-group mt-2">
+                    <label for="linkedinField"> LinkedIn </label>
+                    <input type="text" id="linkedinField" placeholder="Enter here" class="form-control" />
+                </div>
+                
+            </div>
+            <div class="col-md-6">
+                <h3>PROFFESIONAL INFORMATION</h3>
+                <div class="form-group mt-2">
+                    <label for="">Objective</label>
+                    <textarea name="text"
+                    id="objectivefield" placeholder="Enter here" class="form-control weField" cols="30"
+                        rows="3"></textarea>
+                </div>
+                <div class="form-group mt-2" id="we">
+                    <label for="">Work Experience</label>
+                    <textarea name="text"
+                     placeholder="Enter here" class="form-control weField" cols="30"
+                        rows="3"></textarea>
+                    <!--new textarea-->
+
+                    <div class="container text-center" id="weAddButton">
+                        <button onClick="weAddButton()" class="btn btn-primary btn-sm mt-1">Add</button>
+                    </div>
+                </div>
+                <div class="form-group mt-2" id="aq">
+                    <label for="">Academic Qualifications</label>
+                    <textarea name="text" 
+                    placeholder="Enter here" 
+                    class="form-control aqField" 
+                    cols="30"
+                        rows="3"></textarea>
+                    <!--new textarea-->
+
+                    <div class="container text-center" id="aqAddButton">
+                        <button onclick="aqAddButton()" class="btn btn-primary btn-sm mt-1">Add</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-center " id="btng">
+        <button onclick="generateCV()" class="btn btn-primary btn-sm  mt-3">Generate CV</button>
+    </div>
+
+    <div class="container" id="template">
+        <div class="row">
+            <div class="col-md-4 text-center py-5 background ">
+                <!-- first colummn -->
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAKlBMVEX////d3d3a2trk5OT5+fnf39/z8/Pn5+f29vbh4eH8/Pzw8PDs7Ozt7e16elEhAAAJHElEQVR4nO1d2Zq0KgycdsP1/V/3iLStthtQFcA+f13Mxcw3aEE2QoJ/fyHQFnXVdUM/QukfQ9dVddEGebYwimpQeZlpvLaYflc2aqiK2C/pi7pT5Z7YHpqoGurYr+uGtlKNBbctz0ZVDxHbundlt2LZJ7+WlXr5sfuwfOVVbBLnqHLPxfteyjRJ1ujqbUmq1MR1KHn03iTLITapBYVi03uTVGm4yrqR4TdxbOILayXIz3CMa3UquvodcCzjcZSUzw3HSLJaBOJnOEawOUL285SjCsyvC0rPoAvIL6SALggoqn0MfhPHPgi/oozET6MMsIzRFtBAfBnbKBq4odiIZgKq2Pw0MsEYJ7APPIOYb4wvoTOEJLWIzWsDAZuahAou4CtjZCexB9ttJGJj1uDamzw9giPFnEewiU3mBM2vE6RRjBlp36H8dYIUimkTJFBMVwdngLqYPkGQYh777a0A+MUEI5kj+Ec3wzMIjhQ9D+IS201cwW+nUTyH4EjRZ7+YuiPcwsMtPsOMLnA2qMnteO/gam3qpxEcKbodMsZ+XS+4EHyaEho4qGL3PBnVyKxPGNtnEhwp2iaKn7ChOIblNuOhMqphJ6ePlVENKzl9ph2dYWFPH+jr17Dw+88KuPe4DcEld73ZDLlHWMSnIk8fOTWq76q6LgrdW2J6MCSepB92TVDxH5g1/VGbQVsPObFueoXLrA3bU+ii9Cv7XfcCJC89BncJs8bCAdf8hN7FIlJTM/ZV2gN5IS+SNkRnnymXcomOy/HU7fOW0I2fxsB69PT4s0VkaWFW+lQtM/XxRBNZhtQ3A11zHj+9wrEIkZYQKJDkLePxIlKGx2pAaAcJh4ENpXTbPlVyDFpp2dF7MDYVjjnLI5BSKAdbDMq+kFFPx3HKB3PNsDOcmkhOAdbeHhCGZRV9UlZxZ2sIdoZX1Uqh+G1rYAX3OqM8A8PcfOVO4XiGXNFKYPgV16CBL7uelbEJ2AaPqFjQ6iBnEBLvm3eChZRfO49bm42YgpZUpMcDZrixpuCEEcuRF+BR+Pq1wLssZDqRYDldOX1wuoTayWB7ulIeMCaVIUgIlZephzZO6JbwHLCFL0kjSRH8++tBhh8DAamh3BLii/hRRGyq5AjimjgrIhSyifblouZ0DtwgIZVtrgbj5YwwUfSQews0nDTzD4Xxwlc5gLbmbQYRQyMUsC0AxdRYCST+o3RWXQHcmpvgGxlB/KIK1JrqMRBRJ+S474ARnLQImaWbyg4GsD3UZEyRmE1cDVFFnOI2ZIgAVxuBe1edcENivwAX/4EeUZtCQNAlbxn5ACI4uQvApwoHpQbYuWaDjSAe0WhgxlTbQuT/AxAkJJEQTU6fYQbaqhAMsQzEqEgIwwAOH3b5LRS0PYFh8T9giFSZBGEI6mGN1dH8Y8gA6C0whg+IaVCG6celKMP09xaoHqa/PxwZQsmsAHt8sGYS9PjSOX0NMGE6MoSkIPlc22TuIYap50unNYDkPPmcd4ZOkrgiwr00f+DpTupnT9MSYKqc9vmhySZikW3aZ8DGY8M7TEnA5dA66gJrVZOuxTDH3GgriSRDuLJtcticYgAR4P2CxtaDgwgma9C6ttdbwtCqHLlFZFWzo8IutoiEJTTbO9Tn+HbF3oHRtWvkC+7LS7XOe9n7UIviaWB0zM77V7h7NNF+i8VEEJor+QQpneVzHonQe0iXU86FY7MjIzSKpdi7tt4WMAZLrv9Q4zMeQ+aT6yF9rdO5HKFPrA94E0+S7vxgUWRdj7GORDiXtJUcirT7P9YBMyHGncCgyLvgZG3faVcJ4uaGd5PTNiFPGxV0Gi3zUsPNyLRrzLD7aajXUiqpoYFvolEvEf8+NWIO7ZnWYH8c83v6iEP7fRKVfQv8d6TM/RKCuzbSP7+7jyLJF0C7bTYEvu+9P1Ch3wCd9bYmpxP4fvmRMRB4Sm7hHQslcovpUYUB/3LW8TkvdUmy6KU+P39kCIS+upJl+VAfyWvRyayeeeqhNZe7yDvLylxfI1wUbTtdJNyrRva+5OO8kfRN3lmQu6DNo06qYJ77xYBvnJ29P+gDT9c43+E8/T72GeenYT+yiFeb1N9YxKsDzZ9YxOs8wy+Y0+siJiCw0Y6ubJocRdOUkM+8S757BTbj++R9dRib+aGtqz5/+dG825q6p7/H6LqTOeZufSLX+yN3t094jPRky4RrR5I2ZRMOHiNrQjRcVC7X7tqUvlgH4PYfP0BRWGf67QrP7bbC7h8HQNBacrTMgNnw80oYIigaG46Wg1lENiH0b/da9/Nu/Vo3coqdTQC4E1WH9yLNFB030uUw0pU9BU5ecLQXgbNbrcTpIUI0CZ1xKqmuJZIncyVVaemAs6DLuS/imGA8FVxwoozO4xztowK0qtngyEr4FCztj2oSIXhE0e9U9lunkyG4p+hr//JUCe4oehd/rjdSSRiZBRtz498t0K4IxncTW6ydBhCDLDmN2I5+j0/wjLUKzD4jQFu6Mxp/P7GGUekgF9E4o+QYQEMxLTNjULMs/ERRsgfPE1NEwnFhhmKStpTlow3FtKypYhJ8f9EuE+lu8oRJoRKzYaawlVTHjUPkdZqEQlNj3ukuepILdvOPF6YMi4TOmIGj5qE02kZuqt/hfFznX4ludEyZclS3YXblwOdq72CMtNcHjRmoS3m3ZZI3kZbRLKB0ANmWsbTxrYEBnLJJh2d5WKPaGgUJ466KMuDD3nhPq6CJOXqe+BVKH7xbFULOqXG745wGqVR4y0zgYON9ICtfjVHNp9vhbdtbVGXXcW41iRMQz/URmdgln8O7Wihs3ccaxVzLI1Fa8ymiyfLQdR+b1/hwbLiGtWuS4KexTHVGK3GrVSYoHO5o+7m4jlLHt9TqZS/r5jBxfGRq6nTyf622WkoR2XKPYtWClmVN78GyrfqlVWicqBTE8wtVvhT1ZlmpOvt3LDpVrv/Zpq0vDtYkDc2hKi6Xs6iGNbm06RlUattSqKvSm1z1Q1fVdWFQ11U39CpvvkvWxylJnJ7B1Fm4L5fYYv/nl4tcx0dR6RZDu7JXvcrPYvdBUfWqeZ0T1X9pVF89ktwKbaGbRketK+fajrIcNVP13Y0V+gc7/Af6YIIBFqPVMQAAAABJRU5ErkJggg=="
+                    alt="" class="img-fluid myimg">
+                <div class="container">
+                    <p id="nameT1">Saloni Gupta</p>
+                    <p id="contactT">+9134567892 , +9123456788</p>
+                    <p id="addressT">1234/5677 sector</p>
+                    <hr />
+
+                    <p id="fbT"><a href="#1">https://www.facebook.com</a>
+                    </p>
+                    <p id="instaT"><a href="#1">https://www.instagram.com</a>
+                    </p>
+                    <p id="liT"><a href="#1">https://www.LinkedIn.com</a>
+                    </p>
+
+                </div>
+            </div>
+            <div class="col-md-8 py-5">
+                <!-- second column -->
+                <h2 id="nameT2" class="text-center" style="font-weight: 980">Saloni Gupta</h2>
+                <!-- objective card             -->
+                <div class="card mt-4">
+                    <div class="card-header background">
+                        <h3>Objective</h3>
+                    </div>
+                    <div class="card-body">
+                        <p id="objT">Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Inventore quasi praesentium, hic error laboriosam
+                            laborum, iure sit deleniti possimus sint repellendus
+                            architecto temporibus omnis, alias ex ipsam. Exercitationem,
+                            inventore.</p>
+                    </div>
+                </div>
+<!-- work Experience -->
+<div class="card mt-4">
+    <div class="card-header background">
+        <h3>Work Experience</h3>
+    </div>
+    <div class="card-body">
+        <ul id="weT">
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Academic Qualifications -->
+<div class="card mt-4">
+    <div class="card-header background">
+        <h3>Academic Qualifications</h3>
+    </div>
+    <div class="card-body">
+        <ul id="aqT">
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container mt-3 text-center">
+    <button onclick="printCV()" class="btn background">PrintCV</button>
+</div>
+            </div>
+        </div>
+</div>
+        
+
+    </div>
+    </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

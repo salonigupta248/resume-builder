@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(234, 212, 255);
+}
+h1{
+    font-size: 50px;
+    text-align: center;
+    color: blueviolet;
+}
+#cv-form,#btng{
+    /* display: none; */ }
+#cv-template{
+     display: none;
+  }
+#myimg{
+
+}
+.background{
+    background-color: rgb(194, 179, 207);
+}
